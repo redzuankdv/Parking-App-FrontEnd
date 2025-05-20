@@ -4,6 +4,7 @@ import { Spinner, Toast, ToastContainer } from "react-bootstrap";
 export function JokeBox() {
     const [joke, setJoke] = useState("");
     const [loading, setLoading] = useState(true);
+    const [showToast, setShowToast] = useState(false);
 
     useEffect(() => {
         const maxRetries = 3;
@@ -16,6 +17,7 @@ export function JokeBox() {
                 if (data.joke) {
                     setJoke(data.joke);
                     setLoading(false);
+                    setShowToast(true);
                 } else {
                     throw new Error("No joke found");
                 }
@@ -26,6 +28,7 @@ export function JokeBox() {
                 } else {
                     setJoke("Couldn't fetch a joke right now. Please try again later.");
                     setLoading(false);
+                    setShowToast(true);
                 }
             }
         };
@@ -34,7 +37,13 @@ export function JokeBox() {
 
     return (
         <ToastContainer position="bottom-end" className="p-3" style={{ zIndex: 9999 }}>
-            <Toast bg="light" show={true} delay={5000} autohide>
+            <Toast
+                bg="light"
+                show={showToast}
+                delay={5000}
+                autohide
+                onClose={() => setShowToast(false)}
+            >
                 <Toast.Header closeButton={false}>
                     <strong className="me-auto">Random Joke</strong>
                 </Toast.Header>
