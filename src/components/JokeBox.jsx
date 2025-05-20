@@ -34,7 +34,7 @@ export function JokeBox() {
 
     return (
         <ToastContainer position="bottom-end" className="p-3" style={{ zIndex: 9999 }}>
-            <Toast bg="light" show={true}>
+            <Toast bg="light" show={true} delay={5000} autohide>
                 <Toast.Header closeButton={false}>
                     <strong className="me-auto">Random Joke</strong>
                 </Toast.Header>
