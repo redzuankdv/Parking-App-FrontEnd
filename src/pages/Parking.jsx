@@ -65,8 +65,8 @@ function ParkingTable({ parkings, onDelete }) {
                         <td>{parking.location}</td>
                         <td>{parking.parkingarea}</td>
                         <td>{parking.slot}</td>
-                        <td>{new Date(parking.intime).toLocaleString()}</td>
-                        <td>{new Date(parking.outtime).toLocaleString()}</td>
+                        <td>{parking.intime.replace('T', ' ').slice(0, 16)}</td>
+                        <td>{parking.outtime.replace('T', ' ').slice(0, 16)}</td>
                         <td>
                             <Link to={`/editparking/${parking.id}`}>
                                 <Button variant="warning" size="sm">Edit</Button>
